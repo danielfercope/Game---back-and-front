@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <pre id="carregaNaDom"></pre>
+    <button id="botaoDinamico">
+        
+    </button>
+
+    <script>
+        function carregarBackend(){
+            fetch("http://localhost:3000").then(function(respostaDoServidor) {
+                return respostaDoServidor.json()
+            }).then(function(jsonConvertido){
+                console.log(jsonConvertido)
+                var carregarEssaGracinha =  document.getElementById("carregaNaDom")
+
+                var botaoDinamico = document.getElementById("botaoDinamico");
+                botaoDinamico.innerText = jsonConvertido.botaoDinamico
+                carregaNaDom.append(jsonConvertido.mensagem)
+            })
+        }
+        carregarBackend()
+    </script>
+</body>
+</html>
